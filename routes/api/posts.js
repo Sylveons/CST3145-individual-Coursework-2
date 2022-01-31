@@ -8,6 +8,12 @@ const router = express.Router();
 //get post
 
 
+router.get('/test', async (req,res) => {
+  
+    res.send("pain")
+} );
+
+
 
 router.get('/', async (req,res) => {
     const lessons = await loadlesson();
@@ -51,10 +57,6 @@ router.post('/orders', async(req, res) => {
 // res.send('Item Updated!');
 
 // })
-
-
-
-
 
 
 

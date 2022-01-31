@@ -45,7 +45,7 @@
     </div>
 
 
-    <div v-for="lesson in result">
+    <div v-for="lesson in Lessons">
         <figure>
             <img v-bind:src="lesson.Image" height="100px" width="100px">
         </figure>
@@ -205,7 +205,7 @@
                         response.json().then(
                             function (json) {
                                 // note that we used 'store.product' instead of 'this.product'
-                                lessons.products = json;
+                                Lessons.lessons = json;
                             });
                     })
             }
