@@ -29,7 +29,7 @@ console.log(result);
 app.get("/",function(req,res){
   db.collection('Lessons').find({}).toArray()
   .then(Lessons => {
-    res.render('index.html', { Lessons: Lessons })
+    res.render('index.ejs', { Lessons: Lessons })
   
 
 })
