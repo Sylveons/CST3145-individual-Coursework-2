@@ -1,5 +1,5 @@
 
-fetch('http://localhost:8000/api/posts/').then(
+fetch('/api/posts/').then(
 
 function (response) {
     response.json().then( // use .json() instead of .text()
@@ -19,7 +19,7 @@ function (response) {
 
 
     
-    fetch('http://localhost:8000/api/posts/').then(
+    fetch('/api/posts/').then(
  {
   method: "post",
   headers: {

@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const { route } = require('express/lib/application');
 const mongodb = require('mongodb')
 
 const router = express.Router();
@@ -36,7 +37,25 @@ router.post('/orders', async(req, res) => {
 })
 
 
-//delete post 
+//update post 
+
+// router.put('/orders', async(req, res) => {
+
+//     const orders = await loadlesson();
+//     await orders.findOneAndUpdate(req.body.id,{
+//     Spaces: req.body.spaces
+//     })
+
+// res.send('Item Updated!');
+
+// })
+
+
+
+
+
+
+
 
 async function loadlesson() {
     const client = await mongodb.MongoClient.connect
