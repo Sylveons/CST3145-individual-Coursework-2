@@ -7,6 +7,12 @@ const router = express.Router();
 
 //get post
 
+router.get('/', function(req,res){
+    
+      res.end('No')
+});
+
+
 router.get('/', async (req,res) => {
     const lessons = await loadlesson();
     res.send(await lessons.find({}).toArray())
