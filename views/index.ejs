@@ -17,14 +17,14 @@
     <div id="app">
         <main>
             <h1 v-text="sitename"></h1>
-            
-        
-      
+
+
+
             <div v-if='showLesson'>
 
                 <header>
 
-                  
+
                 </header>
                 <label for="Sort">Sort By Price:</label>
 
@@ -33,15 +33,15 @@
 
 
 
-                <div v-for="db.collection('Lessons')">
+                <div v-for=db.collection('Lessons')>
                     <figure>
                         <img v-bind:src="lesson.Image" height="100px" width="100px">
                     </figure>
 
-                    <h2 v-text="lesson.Subject"></h2>
-                    <p v-html="lesson.Location"></p>
-                    <p v-html="lesson.Price"></p>
-                    <p v-html="lesson.Spaces"></p>
+                    <h2 v-text="Lesson.Subject"></h2>
+                    <p v-html="Lesson.Location"></p>
+                    <p v-html="Lesson.Price"></p>
+                    <p v-html="Lesson.Spaces"></p>
 
 
 
@@ -58,7 +58,7 @@
                 </div>
 
 
-              
+
 
                 <button class="checkoutbutton" v-on:click="showCheckout()" v-bind:disabled="cart.length === 0">
                     <!-- add the cart icon -->
@@ -124,12 +124,12 @@
                 <h2>Checkout</h2>
 
                 <p v-if="errors.length">
-              
-                    <ul>
-                      <li v-for="error in errors">{{ error }}</li>
-                    </ul>
-                  </p>
-               
+
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+                </p>
+
                 <p>
                     <strong>First Name:</strong>
                     <!-- This input field is bound to 'firstName' in the 'order' object -->
@@ -157,62 +157,72 @@
                         <figure>
                             <img v-bind:src="lesson.Image" height="100px" width="100px">
                         </figure>
-    
-    
-                        <h2 v-text="lesson.Subject"></h2>
-                        <p v-html="lesson.Location"></p>
-                        <p v-html="lesson.Price"></p>
+
+
+                        <h2 v-text="Lesson.Subject"></h2>
+                        <p v-html="Lesson.Location"></p>
+                        <p v-html="Lesson.Price"></p>
                         <p v-html="cartCount(lesson)"></p>
-    
+
                         <button class="add to cart" v-on:click="remove(lesson)"> Remove</button>
-    
+
                     </figure>
                 </div>
+
+        </main>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+
+
+        let app = new Vue({
+
+            data: { lesson: {} },
+            created: function () { // this function will be run automatically
+                // when creating the Vue instance
+                fetch('http://localhost:8000').then(
+                    function (response) {
+                        response.json().then(
+                            function (json) {
+                                // save the returned JSON object to 'product'
+                                // note that we used 'store.product' instead of 'this.product'
+                                store.lesson = json;
+                            });
+                    })
+            },
+       
     
-            </main>
     
-    
-            </div>
 
-            
+        cart: [],
+            errors: [],
 
-
-
-
-
-
-        <script>
-
-
-            let app = new Vue({
-
-                el: '#app',
-                data: {
-
-                    sitename: 'After School Clubs',
-
-
-
-                    lessons: lessons,
-
-                    cart: [],
-                    errors: [],
-
-                    Checkout: false,
+                Checkout: false,
                     showLesson: true,
-                    showLesson2: false,
-                    order: {
+                        showLesson2: false,
+                            order: {
 
 
 
-                        firstName: null,
-                        lastName: null,
-                        Phone: null,
+            firstName: null,
+                lastName: null,
+                    Phone: null,
                         searchterm: null,
-                        searchresult: null,
+                            searchresult: null,
                     },
 
                 },
 
-            })
-            </script>
+        )
+
+        
+    </script>
