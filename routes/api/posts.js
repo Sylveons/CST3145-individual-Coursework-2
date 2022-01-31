@@ -7,10 +7,6 @@ const router = express.Router();
 
 //get post
 
-router.get('/', function(req,res){
-    
-      res.end('No')
-});
 
 
 router.get('/', async (req,res) => {
