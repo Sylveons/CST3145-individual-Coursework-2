@@ -16,11 +16,7 @@ const port = process.env.PORT || 8000
 app.listen(port)
     console.log("Listening on port 8000");
 
-    
-app.get("/",function(req,res,){
-  res.end("Don't forget to select a collection!");
-});
-
+   
 
 MongoClient.connect(uri,{ useUnifiedTopology: true })
 .then(client => {
@@ -30,7 +26,7 @@ console.log(result);
 
 
 
-app.get("/Lessons",function(req,res){
+app.get("/",function(req,res){
   db.collection('Lessons').find({}).toArray()
   .then(Lessons => {
     res.render('index.ejs', { Lessons: Lessons })
