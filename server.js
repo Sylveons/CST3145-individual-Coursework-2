@@ -32,7 +32,7 @@ app.get("/Lessons",function(req,res){
 
 })
 
-
+app.get("/")
 
 
 app.get("/",function(req,res){
