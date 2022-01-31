@@ -14,235 +14,234 @@
 </head>
 
 <body>
-    <div id="app">
-        <main>
-            <h1 v-text="sitename"></h1>
-            
-            <strong>Search</strong>
-
-            <input v-model="order.searchterm" /> <button>search</button>
-
-            <h2 v-text="order.searchresult"></h2>
-
-      
-            <div v-if='showLesson'>
-
-                <header>
-
-                  
-                </header>
-                <label for="Sort">Sort By Price:</label>
-
-                <button class="highest" v-on:click="SortH()" v-bind:disabled="showLesson2===true">Highest</button>
-                <button class="Lowest" v-bind:disabled="showLesson===true">Lowest</button>
 
 
 
-                <div v-for="lesson in Sortedlessons">
-                    <figure>
-                        <img v-bind:src="lesson.Image" height="100px" width="100px">
-                    </figure>
-
-                    <h2 v-text="lesson.Subject"></h2>
-                    <p v-html="lesson.Location"></p>
-                    <p v-html="lesson.Price"></p>
-                    <p v-html="lesson.Spaces"></p>
 
 
 
-                    <button class="add to cart" v-on:click="addToCart(lesson)"
-                        v-bind:disabled="lesson.Spaces === 0 ">Add to
-                        cart</button>
-                    <span>Buy Now! <i class="fas fa-star"></i></span>
 
-                    <span v-if='lesson.spaces === 0'>All out!
-                        Only 1 Space left!
-                    </span>
+    <div v-for="(lesson,index) in lessons">
+        <figure>
+            <img v-bind:src="lesson.Image" height="100px" width="100px">
+        </figure>
+
+        <h2 v-text="lesson.Subject"></h2>
+        <p v-html="lesson.Location"></p>
+        <p v-html="lesson.Price"></p>
+        <p v-html="lesson.Spaces"></p>
 
 
-                </div>
+
+        <button class="add to cart" v-on:click="addToCart(lesson)" v-bind:disabled="lesson.Spaces === 0 ">Add to
+            cart</button>
+        <span>Buy Now! <i class="fas fa-star"></i></span>
+
+        <span v-if='lesson.spaces === 0'>All out!
+            Only 1 Space left!
+        </span>
 
 
-                    <div v-for="lesson in result">
-                        <figure>
-                            <img v-bind:src="lesson.Image" height="100px" width="100px">
-                        </figure>
-    
-                        <h2 v-text="lesson.Subject"></h2>
-                        <p v-html="lesson.Location"></p>
-                        <p v-html="lesson.Price"></p>
-                        <p v-html="lesson.Spaces"></p>
-    
-                    <div v-for="lesson in Sortedlessons">
-                        <figure>
-                            <img v-bind:src="lesson.Image" height="100px" width="100px">
-                        </figure>
-    
-                        <h2 v-text="lesson.Subject"></h2>
-                        <p v-html="lesson.Location"></p>
-                        <p v-html="lesson.Price"></p>
-                        <p v-html="lesson.Spaces"></p>
-    
     </div>
 
 
-                <button class="checkoutbutton" v-on:click="showCheckout()" v-bind:disabled="cart.length === 0">
-                    <!-- add the cart icon -->
-                    <span class="fas fa-cart-plus"></span> Checkout
-                </button>
+    <div v-for="lesson in result">
+        <figure>
+            <img v-bind:src="lesson.Image" height="100px" width="100px">
+        </figure>
 
-            </div>
+        <h2 v-text="lesson.Subject"></h2>
+        <p v-html="lesson.Location"></p>
+        <p v-html="lesson.Price"></p>
+        <p v-html="lesson.Spaces"></p>
 
+        <div v-for="lesson in Sortedlessons">
+            <figure>
+                <img v-bind:src="lesson.Image" height="100px" width="100px">
+            </figure>
 
+            <h2 v-text="lesson.Subject"></h2>
+            <p v-html="lesson.Location"></p>
+            <p v-html="lesson.Price"></p>
+            <p v-html="lesson.Spaces"></p>
 
-            <div v-if='showLesson2'>
-
-                <header>
-
-                    <h1 v-text="sitename"></h1>
-                </header>
-                <label for="Sort">Sort By Price:</label>
-
-                <button class="highest" v-on:click="SortH()" v-bind:disabled="showLesson2===true">Highest</button>
-                <button class="Lowest" v-on:click="SortH()" v-bind:disabled="showLesson===true">Lowest</button>
-
-
-                <div v-for="lesson in Sortedlessons2">
-                    <figure>
-                        <img v-bind:src="lesson.Image" height="100px" width="100px">
-                    </figure>
-
-                    <h2 v-text="lesson.Subject"></h2>
-                    <p v-html="lesson.Location"></p>
-                    <p v-html="lesson.Price"></p>
-                    <p v-html="lesson.Spaces"></p>
+        </div>
 
 
+        <button class="checkoutbutton" v-on:click="showCheckout()" v-bind:disabled="cart.length === 0">
+            <!-- add the cart icon -->
+            <span class="fas fa-cart-plus"></span> Checkout
+        </button>
 
-                    <button class="add to cart" v-on:click="addToCart(lesson)"
-                        v-bind:disabled="lesson.Spaces === 0 ">Add to
-                        cart</button>
-                    <span>Buy Now! <i class="fas fa-star"></i></span>
-
-                    <span v-if='lesson.spaces === 0'>All out!
-                        Only 1 Space left!
-                    </span>
-
-
-                </div>
-
-
-                <button class="checkoutbutton" v-on:click="showCheckout()" v-bind:disabled="cart.length === 0">
-                    <!-- add the cart icon -->
-                    <span class="fas fa-cart-plus"></span> Checkout
-                </button>
-
-            </div>
+    </div>
 
 
 
+    <div v-if='showLesson2'>
+
+        <header>
+
+            <h1 v-text="sitename"></h1>
+        </header>
+        <label for="Sort">Sort By Price:</label>
+
+        <button class="highest" v-on:click="SortH()" v-bind:disabled="showLesson2===true">Highest</button>
+        <button class="Lowest" v-on:click="SortH()" v-bind:disabled="showLesson===true">Lowest</button>
+
+
+        <div v-for="lesson in Sortedlessons2">
+            <figure>
+                <img v-bind:src="lesson.Image" height="100px" width="100px">
+            </figure>
+
+            <h2 v-text="lesson.Subject"></h2>
+            <p v-html="lesson.Location"></p>
+            <p v-html="lesson.Price"></p>
+            <p v-html="lesson.Spaces"></p>
 
 
 
+            <button class="add to cart" v-on:click="addToCart(lesson)" v-bind:disabled="lesson.Spaces === 0 ">Add to
+                cart</button>
+            <span>Buy Now! <i class="fas fa-star"></i></span>
 
-            <div v-if='Checkout'>
+            <span v-if='lesson.spaces === 0'>All out!
+                Only 1 Space left!
+            </span>
 
-                <h2>Checkout</h2>
 
-                <p v-if="errors.length">
-              
-                    <ul>
-                      <li v-for="error in errors">{{ error }}</li>
-                    </ul>
-                  </p>
-               
-                <p>
-                    <strong>First Name:</strong>
-                    <!-- This input field is bound to 'firstName' in the 'order' object -->
-                    <input v-model="order.firstName" />
-                </p>
-                <p>
-                    <strong>Last Name:</strong>
-                    <!-- This input field is bound to 'lastName' in the 'order' object -->
-                    <input v-model="order.lastName" />
-                </p>
+        </div>
 
-                <strong>Phone:</strong>
-                <!-- This input field is bound to 'lastName' in the 'order' object -->
-                <input v-model="order.Phone" />
-                </p>
-                <h2>Order Information</h2>
-                <p>First Name: {{order.firstName}}</p>
-                <p>Last Name: {{order.lastName}}</p>
 
-                <p>Phone: {{order.Phone}}</p>
+        <button class="checkoutbutton" v-on:click="showCheckout()" v-bind:disabled="cart.length === 0">
+            <!-- add the cart icon -->
+            <span class="fas fa-cart-plus"></span> Checkout
+        </button>
 
-                <button class="Confirm" v-on:click="Validation()"> Confirm</button>
-                <div v-for="lesson in cart">
-                    <figure>
-                        <figure>
-                            <img v-bind:src="lesson.Image" height="100px" width="100px">
-                        </figure>
-    
-    
-                        <h2 v-text="lesson.Subject"></h2>
-                        <p v-html="lesson.Location"></p>
-                        <p v-html="lesson.Price"></p>
-                        <p v-html="cartCount(lesson)"></p>
-    
-                        <button class="add to cart" v-on:click="remove(lesson)"> Remove</button>
-    
-                    </figure>
-                </div>
-    
-            </main>
-    
-    
-            </div>
-
-            
+    </div>
 
 
 
 
 
 
-        <script>
+
+    <div v-if='Checkout'>
+
+        <h2>Checkout</h2>
+
+        <p v-if="errors.length">
+
+        <ul>
+            <li v-for="error in errors">{{ error }}</li>
+        </ul>
+        </p>
+
+        <p>
+            <strong>First Name:</strong>
+            <!-- This input field is bound to 'firstName' in the 'order' object -->
+            <input v-model="order.firstName" />
+        </p>
+        <p>
+            <strong>Last Name:</strong>
+            <!-- This input field is bound to 'lastName' in the 'order' object -->
+            <input v-model="order.lastName" />
+        </p>
+
+        <strong>Phone:</strong>
+        <!-- This input field is bound to 'lastName' in the 'order' object -->
+        <input v-model="order.Phone" />
+        </p>
+        <h2>Order Information</h2>
+        <p>First Name: {{order.firstName}}</p>
+        <p>Last Name: {{order.lastName}}</p>
+
+        <p>Phone: {{order.Phone}}</p>
+
+        <button class="Confirm" v-on:click="Validation()"> Confirm</button>
+        <div v-for="lesson in cart">
+            <figure>
+                <figure>
+                    <img v-bind:src="lesson.Image" height="100px" width="100px">
+                </figure>
 
 
-            let app = new Vue({
+                <h2 v-text="lesson.Subject"></h2>
+                <p v-html="lesson.Location"></p>
+                <p v-html="lesson.Price"></p>
+                <p v-html="cartCount(lesson)"></p>
 
-                el: '#app',
-                data: {
+                <button class="add to cart" v-on:click="remove(lesson)"> Remove</button>
 
-                    sitename: 'After School Clubs',
+            </figure>
+        </div>
+
+        </main>
 
 
-
-                    lessons: lessons,
-
-                    cart: [],
-                    errors: [],
-
-                    Checkout: false,
-                    showLesson: true,
-                    showLesson2: false,
-                    order: {
+    </div>
 
 
 
-                        firstName: null,
-                        lastName: null,
-                        Phone: null,
-                        searchterm: null,
-                        searchresult: null,
-                    },
-
-                },
-
-            })
 
 
-                </script>
 
-            
+
+
+    <script>
+
+
+
+
+
+
+        let app = new Vue({
+            data: { Lessons: {} },
+            // this function runs when creating the Vue instance
+            created: function () {
+                // replace the URL to your Heroku app and route
+                fetch('https://dominique-walker-cst1345-cw2.herokuapp.com/api/posts/').then(
+                    function (response) {
+                        response.json().then(
+                            function (json) {
+                                // note that we used 'store.product' instead of 'this.product'
+                                lessons.products = json;
+                            });
+                    })
+            }
+        })
+
+            // let app = new Vue({
+
+            //     el: '#app',
+            //     data: {
+
+            //         sitename: 'After School Clubs',
+
+
+
+            //         lessons: lessons,
+
+            //         cart: [],
+            //         errors: [],
+
+            //         Checkout: false,
+            //         showLesson: true,
+            //         showLesson2: false,
+            //         order: {
+
+
+
+            //             firstName: null,
+            //             lastName: null,
+            //             Phone: null,
+            //             searchterm: null,
+            //             searchresult: null,
+            //         },
+
+            //     },
+
+            // })
+
+
+    </script>
