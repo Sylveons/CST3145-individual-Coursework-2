@@ -4,6 +4,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
 
+ app.use(express.static(__dirname + '/public'));
 
 
 const { MongoClient } = require('mongodb');
@@ -14,6 +15,11 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 const port = process.env.PORT || 8000
 app.listen(port)
     console.log("Listening on port 8000");
+
+    
+app.get("/",function(req,res,){
+  res.end("Don't forget to select a collection!");
+});
 
 
 MongoClient.connect(uri,{ useUnifiedTopology: true })
@@ -32,12 +38,9 @@ app.get("/Lessons",function(req,res){
 
 })
 
-app.get("/")
 
 
-app.get("/",function(req,res){
-    res.end("Don't forget to select a collection!");
-});
+
 
   
 app.use(function (req, res, next) {
