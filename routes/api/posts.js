@@ -61,6 +61,8 @@ router.post('/orders', async(req, res) => {
 
 
 async function loadlesson() {
+
+    try{
     const client = await mongodb.MongoClient.connect
     (process.env.MONGODB_URI ||'mongodb+srv://Sylveons:Awesome123@cluster0.bro9k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
      {UseNewUrlParser: true})
@@ -68,10 +70,17 @@ async function loadlesson() {
 
 return client.db("After-School-Club").collection('Lessons');
 
+} catch(err) {
+    alert(err); // TypeError: failed to fetch
+  }
 }
 
 
+
 async function loadorders() {
+
+    try{
+
     const client = await mongodb.MongoClient.connect
     (process.env.MONGODB_URI|| 'mongodb+srv://Sylveons:Awesome123@cluster0.bro9k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' ,
      {UseNewUrlParser: true})
@@ -79,6 +88,13 @@ async function loadorders() {
 
 return client.db("After-School-Club").collection('Orders');
 
+
+} catch(err) {
+    alert(err); // TypeError: failed to fetch
+  }
 }
+
+
+
 
 module.exports = router;
